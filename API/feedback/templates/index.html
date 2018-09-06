@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>同花顺财经__用户反馈智能分类Api</title>
+	<link href="http://139.199.178.177/public/10jqka/zzsc.css" rel="stylesheet" type="text/css"   />
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	
+	<script src='http://139.199.178.177/public/10jqka/zzsc.js' type="text/javascript"></script>
+</head>
+<body>
+	<div style='margin-top:20px;'>
+	<img src="http://i.thsi.cn/images/home/v3/logo_v2.png" style='border-right:1px solid black;padding-right:20px;'/> <span style="font-size:22px;font-weight:bold;margin-left:20px;">同花顺用户反馈智能分类API</span>
+	</div>
+
+	<div style='text-align:center;margin-top:120px;'>
+		<form action="./index">
+		<input type="text" style='height:30px;width:800px;font-size:23px;padding:5px;' placeholder="评价内容 ..." name='feedback' value="{{ feedback }}" id='feedback'/> 
+		<input type='submit' value="点 我" style='width:100px;height:43px;background-color:Red;color:white;border:0;vertical-align:bottom'/>
+		</form>
+
+		<div style='margin-top:50px'>
+			<span style='border:1px solid orange;background-color:orange;color:white;padding:8px;'>预 测 结 果</span>
+			<span style='border:1px solid #ccc;background-color:#ccc;color:white;padding:8px;' id="bad"><i class='fa fa-star-o'></i> 差 评</span>
+			<span style='border:1px solid #ccc;background-color:#ccc;color:white;padding:8px;' id="effort"><i class='fa fa-star'></i> 仍需改进</span>
+			<span style='border:1px solid #ccc;background-color:#ccc;color:white;padding:8px;' id='middle'><i class='fa fa-star'></i><i class='fa fa-star'></i> 中 肯</span>
+			<span style='border:1px solid #ccc;background-color:#ccc;color:white;padding:8px;' id='great'><i class='fa fa-star'></i><i class='fa fa-star'></i><i class='fa fa-star'></i> 满 意</span>
+		</div>
+		
+		<div id="tagscloud" style='margin-top:100px;width:400px;'>
+			<a href="./index?feedback=很好，挺喜欢同花顺的" class="tagc1">很好，挺喜欢同花顺的</a>
+			<a href="./index?feedback=非常不错的软件" class="tagc2">非常不错的软件</a>
+			<a href="./index?feedback=为什么总是直接退出" class="tagc5">为什么总是直接退出</a>
+			<a href="./index?feedback=棒棒哒！棒棒哒！感谢你们的坚持和付出，真心不错。" class="tagc1">棒棒哒！棒棒哒！感谢你们的坚持和付出，真心不错。</a>
+			<a href="./index?feedback=弹窗太多" class="tagc2">弹窗太多<a>
+			<a href="./index?feedback=反应有点慢" class="tagc2" >反应有点慢</a>
+			<a href="./index?feedback=用户体验很差" class="tagc2" >用户体验很差</a>
+			<a href="./index?feedback=很容易卡住" class="tagc1">很容易卡住</a>
+			<a href="./index?feedback=经常崩溃" class="tagc2">经常崩溃</a>
+			<a href="./index?feedback=下单软件闪退" class="tagc5">下单软件闪退</a>
+			<a href="./index?feedback=希望同花顺做的更好" class="tagc2">希望同花顺做的更好<a>
+			<a href="./index?feedback=有时候程序会卡死" class="tagc2" >有时候程序会卡死</a>
+			
+			<a href="./index?feedback=不错！很顺手！" class="tagc1">不错！很顺手！</a>
+			<a href="./index?feedback=操作起来非常不爽" class="tagc2">操作起来非常不爽</a>
+			<a href="./index?feedback=最喜欢的炒股软件，非常棒。" class="tagc5">最喜欢的炒股软件，非常棒。</a>
+			<a href="./index?feedback=日k线图形中有买卖提示就好了" class="tagc2">日k线图形中有买卖提示就好了<a>
+			<a href="./index?feedback=太卡太慢了" class="tagc2" >太卡太慢了</a>
+			
+
+			<a href="./index?feedback=为什么沪市的Level2 K线时看不到" class="tagc2">为什么沪市的Level2 K线时看不到</a>
+			<a href="./index?feedback=功能越来越强大了！" class="tagc5">功能越来越强大了！</a>
+			<a href="./index?feedback=不能选券商" class="tagc2">不能选券商<a>
+			<a href="./index?feedback=我用同花顺快10年了，一如既往地支持！" class="tagc2" >我用同花顺快10年了，一如既往地支持！</a>
+			
+			<a href="./index?feedback=很不错，功能比较强大，我使用的时间较短，很多功能都没用上。" class="tagc2" >很不错，功能比较强大，我使用的时间较短，很多功能都没用上。</a>
+		</div>
+		
+		<div style='margin-top:20px;'>
+		<hr />
+		<span style='color:grey;font-size:12px;margin-top:20px'>* 注：该应用对不包含评论情感的语句分类误差较大，任何问题联系我：panguangyu@myhexin.com</span>
+		</div>
+	</div>
+	
+	<script>
+		$(function(){
+			if ({{ tag }} == 0) {
+				$("#bad").css("border", "1px solid red");
+				$("#bad").css("backgroundColor", "red");
+			}
+			if ({{ tag }} == 1) {
+				$("#effort").css("border", "1px solid red");
+				$("#effort").css("backgroundColor", "red");
+			}
+			
+			if ({{ tag }} == 2) {
+				$("#middle").css("border", "1px solid red");
+				$("#middle").css("backgroundColor", "red");
+			}
+			
+			if ({{ tag }} == 3) {
+				$("#great").css("border", "1px solid red");
+				$("#great").css("backgroundColor", "red");
+			}
+			
+		});
+		
+
+	</script>
+	
+	
+</body>
