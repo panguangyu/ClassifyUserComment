@@ -1,2 +1,2 @@
-# classifyUserComment
+# ClassifyUserComment
 classifyUserComment - 利用朴素贝叶斯模型和SnowNLP进行组合，实现用户意见自动分类，使用的数据是某金融软件用户意见反馈
